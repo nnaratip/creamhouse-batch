@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///C:/Users/User/Downloads/index_5.html -->
+<!-- saved from url=(0044)file:///C:/Users/User/Downloads/index_7.html -->
 <html lang="th"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>ครีมเฮ้าส์ — Batch Record</title>
-<link href="./ครีมเฮ้าส์ — Batch Record_files/css2" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--navy:#1B3A6B;--sky:#D6E4F0;--mint:#E8F5E9;--amber:#FFF9C4;--red:#FFEBEE}
@@ -122,6 +122,40 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
 .pw-box button:hover{background:#14305a}
 .pw-err{font-size:13px;color:#B71C1C;margin-top:.5rem;display:none}
 
+
+.home-screen{padding:1.5rem 1.25rem}
+.home-title{font-size:22px;font-weight:600;color:#1B3A6B;margin-bottom:.25rem}
+.home-sub{font-size:14px;color:#666;margin-bottom:1.75rem}
+.home-cards{display:grid;gap:14px}
+.home-card{background:#fff;border:.5px solid #ddd;border-radius:12px;padding:1.25rem 1.5rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:1rem;text-align:left}
+.home-card:hover{border-color:#1B3A6B;background:#F5F8FB}
+.home-card .icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.home-card.batch .icon{background:#D6E4F0}
+.home-card.daily .icon{background:#E8F5E9}
+.home-card h3{font-size:16px;font-weight:600;color:#1B3A6B;margin:0 0 .2rem}
+.home-card p{font-size:13px;color:#888;margin:0}
+.back-btn{display:flex;align-items:center;gap:6px;background:none;border:none;color:#1B3A6B;font-size:14px;font-weight:500;cursor:pointer;font-family:'Sarabun',sans-serif;padding:.5rem 0;margin-bottom:.5rem}
+
+/* Daily Log specific */
+.dl-app{display:none;max-width:720px;margin:0 auto;background:#fff;min-height:100vh}
+.dl-topbar{background:#1B5E20;color:#fff;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.dl-topbar h1{font-size:18px;font-weight:600}
+.dl-topbar .sub{font-size:13px;opacity:.75;margin-top:3px}
+.chk-section{padding:1.25rem}
+.chk-sec-title{font-size:14px;font-weight:600;color:#1B5E20;background:#E8F5E9;padding:8px 12px;border-radius:8px;margin-bottom:10px}
+.chk-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:.5px solid #eee}
+.chk-row:last-child{border-bottom:none}
+.chk-lbl{font-size:15px;color:#222}
+.chk-btns{display:flex;gap:6px;flex-shrink:0}
+.chk-btn{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:.5px solid #ccc;background:#fff;color:#666;font-family:'Sarabun',sans-serif;transition:all .15s}
+.chk-btn.pass.sel{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20}
+.chk-btn.fail.sel{background:#FFEBEE;border-color:#EF5350;color:#B71C1C}
+.dl-submit{width:calc(100% - 2.5rem);margin:0 1.25rem 1.25rem;padding:.8rem;background:#2E7D32;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif}
+.dl-done{display:none;text-align:center;padding:3rem 1.25rem}
+.dl-done .icon{font-size:52px;margin-bottom:.75rem}
+.dl-done h2{font-size:20px;font-weight:600;color:#1B5E20;margin-bottom:.5rem}
+.dl-done p{font-size:14px;color:#666;margin-bottom:1.5rem}
+.dl-err{background:#FFEBEE;border:.5px solid #EF5350;border-radius:8px;padding:.75rem 1rem;font-size:13px;color:#B71C1C;margin:0 1.25rem .5rem;display:none}
 </style>
 </head>
 <body>
@@ -136,7 +170,103 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
   </div>
 </div>
 
-<div class="app">
+<div id="home-screen" style="display: block; max-width: 720px; margin: 0px auto; background: rgb(255, 255, 255); min-height: 100vh;">
+  <div style="background:#1B3A6B;padding:1.25rem;color:#fff">
+    <div style="font-size:20px;font-weight:600">ครีมเฮ้าส์</div>
+    <div style="font-size:13px;opacity:.75;margin-top:3px">ระบบบันทึกการผลิต</div>
+  </div>
+  <div class="home-screen">
+    <div class="home-title">เลือกรายการ</div>
+    <div class="home-sub">Cold Cream BC1  |  ครีมเฮ้าส์</div>
+    <div class="home-cards">
+      <div class="home-card batch" onclick="showBatch()">
+        <div class="icon">📋</div>
+        <div>
+          <h3>Batch Record</h3>
+          <p>กรอกข้อมูลการผลิต วัตถุดิบ QC ต่อ Lot</p>
+        </div>
+      </div>
+      <div class="home-card daily" onclick="showDaily()">
+        <div class="icon">🧹</div>
+        <div>
+          <h3>Daily Log</h3>
+          <p>บันทึกประจำวันผลิต — ทำความสะอาด + ตรวจสถานที่</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY LOG APP -->
+<div class="dl-app" id="daily-app" style="display: none;">
+  <div class="dl-topbar">
+    <div>
+      <h1>Daily Log — ครีมเฮ้าส์</h1>
+      <div class="sub">บันทึกประจำวันผลิต</div>
+    </div>
+    <button onclick="backHome()" style="background:rgba(255,255,255,.15);border:.5px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:5px 12px;font-size:13px;cursor:pointer;font-family:&#39;Sarabun&#39;,sans-serif">← กลับ</button>
+  </div>
+
+  <!-- Form -->
+  <div id="dl-form">
+    <div class="chk-section">
+      <div class="chk-sec-title">ข้อมูลทั่วไป</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+        <div class="fld"><label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">วันที่ (วัน/เดือน/ปี ค.ศ.)</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:5px">
+            <input type="number" id="dl_d" min="1" max="31" placeholder="วัน" style="text-align:center;font-family:&#39;Sarabun&#39;,sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .4rem;background:#fff;color:#222">
+            <input type="number" id="dl_m" min="1" max="12" placeholder="เดือน" style="text-align:center;font-family:&#39;Sarabun&#39;,sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .4rem;background:#fff;color:#222">
+            <input type="number" id="dl_y" min="2024" max="2035" placeholder="ปี ค.ศ." style="text-align:center;font-family:&#39;Sarabun&#39;,sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .4rem;background:#fff;color:#222">
+          </div>
+        </div>
+        <div class="fld"><label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">Lot ที่ผลิตวันนี้</label>
+          <input type="text" id="dl_lot" placeholder="BC68-05-01" style="width:100%;font-family:&#39;Sarabun&#39;,sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .6rem;background:#fff;color:#222">
+        </div>
+      </div>
+      <div class="fld" style="margin-bottom:8px">
+        <label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">ผู้ตรวจสอบ / Operator</label>
+        <input type="text" id="dl_operator" value="อนงค์นาถ นพวิญญูวงศ์" style="width:100%;font-family:&#39;Sarabun&#39;,sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .6rem;background:#fff;color:#222">
+      </div>
+      <div class="fld">
+        <label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">ผู้อนุมัติ / Approved by</label>
+        <input type="text" id="dl_approver" value="นราธิป นพวิญญูวงศ์" style="width:100%;font-family:&#39;Sarabun&#39;,sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .6rem;background:#fff;color:#222">
+      </div>
+    </div>
+
+    <div class="chk-section" style="padding-top:0">
+      <div class="chk-sec-title">ส่วนที่ 1 : ทำความสะอาดอุปกรณ์</div>
+      <div id="clean-list"></div>
+    </div>
+
+    <div class="chk-section" style="padding-top:0">
+      <div class="chk-sec-title">ส่วนที่ 2 : ตรวจสอบสถานที่ผลิต</div>
+      <div id="inspect-list"></div>
+    </div>
+
+    <div class="chk-section" style="padding-top:0">
+      <div class="fld">
+        <label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">หมายเหตุ / Remarks</label>
+        <textarea id="dl_remarks" style="width:100%;font-family:&#39;Sarabun&#39;,sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.6rem .8rem;background:#fff;color:#222;height:56px;resize:none">N/A</textarea>
+      </div>
+    </div>
+
+    <div class="dl-err" id="dl-err"></div>
+    <button class="dl-submit" id="dl-submit-btn" onclick="submitDailyLog()">บันทึก → Google Sheets</button>
+  </div>
+
+  <!-- Done -->
+  <div class="dl-done" id="dl-done">
+    <div class="icon">✅</div>
+    <h2>บันทึกสำเร็จ!</h2>
+    <p id="dl-done-msg">Daily Log บันทึกเข้า Google Sheets แล้วครับ</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button onclick="newDailyLog()" style="padding:.7rem 1.4rem;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;font-family:&#39;Sarabun&#39;,sans-serif;background:#2E7D32;color:#fff;border:none">+ บันทึกวันใหม่</button>
+      <button onclick="backHome()" style="padding:.7rem 1.4rem;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;font-family:&#39;Sarabun&#39;,sans-serif;border:.5px solid #ccc;background:#fff;color:#333">กลับหน้าหลัก</button>
+    </div>
+  </div>
+</div>
+
+<div class="app" style="display: none;">
   <div class="topbar">
     <div>
       <h1>ครีมเฮ้าส์ — Batch Record</h1>
@@ -371,7 +501,7 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
 </script>
 
 <script>
-const SHEETS_URL='https://script.google.com/macros/s/AKfycbyh5ZpwyUfk56k-SJHkePFI4hj7Iiwy96-wbKpgdx1d8nA0O73v7FOhASUepp3gh7kWfA/exec';
+const SHEETS_URL='https://script.google.com/macros/s/AKfycbwu6himdsPwX5J4umVbf9LvrJUurVj5dK9eOn7zag_VVRMb-f1KoRR2fBceh8v9pF_Ljg/exec';
 const INGS=[
   {code:"CA",th:"เซทิลแอลกอฮอล์",en:"Cetyl Alcohol",pct:10.80,water:false},
   {code:"SP",th:"วาสลีนขาว",en:"White Vaseline",pct:12.00,water:false},
@@ -538,6 +668,152 @@ document.getElementById('mfd_d').value=now.getDate();
 document.getElementById('mfd_m').value=now.getMonth()+1;
 document.getElementById('mfd_y').value=now.getFullYear();
 document.getElementById('mm').value=pad(now.getMonth()+1);
+
+// ── Daily Log constants ───────────────────────────────────
+const DL_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwu6himdsPwX5J4umVbf9LvrJUurVj5dK9eOn7zag_VVRMb-f1KoRR2fBceh8v9pF_Ljg/exec';
+
+const CLEAN_ITEMS = [
+  'ภาชนะตวงยา 2 L',
+  'ภาชนะตวงยา 20 L',
+  'ถังเตรียมยา 50 L',
+  'ไม้พายสแตนเลส',
+  'เครื่องปั่น',
+  'เครื่องผสม',
+];
+const INSPECT_ITEMS = [
+  'วัตถุไม่เกี่ยวข้องกับกระบวนการผลิต',
+  'ฝุ่น / สิ่งปนเปื้อน',
+  'สัตว์นำโรค',
+  'แสงสว่างเพียงพอ',
+  'อุณหภูมิ ≤ 32°C',
+  'พัดลมระบายอากาศ (ห้องผลิต)',
+];
+
+function buildDailyChecks() {
+  const cleanEl = document.getElementById('clean-list');
+  const inspEl  = document.getElementById('inspect-list');
+  cleanEl.innerHTML = '';
+  inspEl.innerHTML  = '';
+  CLEAN_ITEMS.forEach((lbl, i) => {
+    cleanEl.innerHTML += `<div class="chk-row">
+      <div class="chk-lbl">${lbl}</div>
+      <div class="chk-btns">
+        <button class="chk-btn pass" id="cp_${i}" onclick="setChk('cp','cf',${i})">✓ ผ่าน</button>
+        <button class="chk-btn fail" id="cf_${i}" onclick="setChk('cf','cp',${i})">✗ ไม่ผ่าน</button>
+      </div>
+    </div>`;
+  });
+  INSPECT_ITEMS.forEach((lbl, i) => {
+    inspEl.innerHTML += `<div class="chk-row">
+      <div class="chk-lbl">${lbl}</div>
+      <div class="chk-btns">
+        <button class="chk-btn pass" id="ip_${i}" onclick="setChk('ip','if',${i})">✓ ผ่าน</button>
+        <button class="chk-btn fail" id="if_${i}" onclick="setChk('if','ip',${i})">✗ ไม่ผ่าน</button>
+      </div>
+    </div>`;
+  });
+}
+
+function setChk(selId, unselId, i) {
+  const selEl   = document.getElementById(selId+'_'+i);
+  const unselEl = document.getElementById(unselId+'_'+i);
+  if (!selEl || !unselEl) return;
+  selEl.classList.add('sel');
+  unselEl.classList.remove('sel');
+}
+
+function getChkResults(prefix, items) {
+  return items.map((lbl, i) => {
+    const p = document.getElementById(prefix+'p_'+i);
+    const f = document.getElementById(prefix+'f_'+i);
+    if (p && p.classList.contains('sel')) return lbl + ':ผ่าน';
+    if (f && f.classList.contains('sel')) return lbl + ':ไม่ผ่าน';
+    return lbl + ':ไม่ระบุ';
+  }).join('|');
+}
+
+// ── Navigation ───────────────────────────────────────────
+function showHome() {
+  document.getElementById('home-screen').style.display = 'block';
+  document.querySelector('.app').style.display = 'none';
+  document.getElementById('daily-app').style.display = 'none';
+}
+
+function showBatch() {
+  document.getElementById('home-screen').style.display = 'none';
+  document.querySelector('.app').style.display = 'block';
+  document.getElementById('daily-app').style.display = 'none';
+}
+
+function showDaily() {
+  document.getElementById('home-screen').style.display = 'none';
+  document.querySelector('.app').style.display = 'none';
+  document.getElementById('daily-app').style.display = 'block';
+  buildDailyChecks();
+}
+
+function backHome() {
+  showHome();
+}
+
+function newDailyLog() {
+  document.getElementById('dl_lot').value = '';
+  document.getElementById('dl_remarks').value = 'N/A';
+  document.getElementById('dl-err').style.display = 'none';
+  document.getElementById('dl-submit-btn').disabled = false;
+  document.getElementById('dl-form').style.display = 'block';
+  document.getElementById('dl-done').style.display = 'none';
+  const now = new Date();
+  document.getElementById('dl_d').value = now.getDate();
+  document.getElementById('dl_m').value = now.getMonth()+1;
+  document.getElementById('dl_y').value = now.getFullYear();
+  buildDailyChecks();
+}
+
+async function submitDailyLog() {
+  const d   = document.getElementById('dl_d').value;
+  const m   = document.getElementById('dl_m').value;
+  const y   = document.getElementById('dl_y').value;
+  const lot = document.getElementById('dl_lot').value.trim();
+  const errEl = document.getElementById('dl-err');
+  errEl.style.display = 'none';
+
+  if (!d||!m||!y) { errEl.textContent='กรุณากรอกวันที่ให้ครบครับ'; errEl.style.display='block'; return; }
+  if (!lot) { errEl.textContent='กรุณากรอก Lot number ครับ'; errEl.style.display='block'; return; }
+
+  const pad = n => String(n).padStart(2,'0');
+  const dateStr = pad(d)+'-'+pad(m)+'-'+y;
+
+  const payload = {
+    type: 'dailylog',
+    date: dateStr,
+    lot,
+    operator: document.getElementById('dl_operator').value,
+    approver: document.getElementById('dl_approver').value,
+    cleaning: getChkResults('c', CLEAN_ITEMS),
+    inspection: getChkResults('i', INSPECT_ITEMS),
+    remarks: document.getElementById('dl_remarks').value,
+  };
+
+  document.getElementById('dl-submit-btn').disabled = true;
+  document.getElementById('dl-submit-btn').textContent = 'กำลังบันทึก...';
+
+  try {
+    await fetch(DL_SHEETS_URL, { method:'POST', body:JSON.stringify(payload), mode:'no-cors' });
+    document.getElementById('dl-done-msg').textContent = `Daily Log วันที่ ${dateStr} — LOT ${lot} บันทึกเข้า Google Sheets แล้วครับ`;
+    document.getElementById('dl-form').style.display = 'none';
+    document.getElementById('dl-done').style.display = 'block';
+  } catch(err) {
+    errEl.textContent = 'เกิดข้อผิดพลาด: '+err.message;
+    errEl.style.display = 'block';
+    document.getElementById('dl-submit-btn').disabled = false;
+    document.getElementById('dl-submit-btn').textContent = 'บันทึก → Google Sheets';
+  }
+}
+
+// ── Init: show home screen instead of batch directly ─────
+// init
+showHome();
 update();
 </script>
 
