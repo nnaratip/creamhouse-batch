@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)file:///C:/Users/User/Downloads/index_4.html -->
+<html lang="th"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>ครีมเฮ้าส์ — Batch Record</title>
+<link href="./ครีมเฮ้าส์ — Batch Record_files/css2" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1B3A6B;--sky:#D6E4F0;--mint:#E8F5E9;--amber:#FFF9C4;--red:#FFEBEE}
+body{font-family:'Sarabun',sans-serif;background:#F0F4F8;min-height:100vh;padding:0}
+.app{max-width:720px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08)}
+.topbar{background:var(--navy);color:#fff;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.topbar h1{font-size:18px;font-weight:600;line-height:1.3}
+.topbar .sub{font-size:13px;opacity:.75;margin-top:3px}
+.badge-conn{display:flex;align-items:center;gap:5px;font-size:12px;background:rgba(76,175,80,.25);border:.5px solid rgba(76,175,80,.5);border-radius:20px;padding:3px 10px;color:#A5D6A7;white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;background:#4CAF50}
+.prog-wrap{background:#9BB8D8;height:5px}
+.prog{background:#fff;height:5px;transition:width .3s}
+.step-tabs{display:flex;overflow-x:auto;border-bottom:.5px solid #ddd;background:#F5F8FB;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.step-tabs::-webkit-scrollbar{display:none}
+.tab{padding:.65rem 1rem;font-size:13px;font-family:'Sarabun',sans-serif;white-space:nowrap;border:none;background:none;cursor:pointer;color:#666;border-bottom:2.5px solid transparent;font-weight:500}
+.tab.active{color:var(--navy);border-bottom-color:var(--navy)}
+.panel{display:none;padding:1.25rem}
+.panel.active{display:block}
+.sec-title{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:.5px solid #eee}
+.note{background:var(--amber);border:.5px solid #F9A825;border-radius:8px;padding:.7rem 1rem;font-size:13px;color:#5D4037;margin-bottom:1rem;line-height:1.6}
+.note strong{color:#E65100}
+.preview-box{background:var(--navy);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1.25rem}
+.preview-box .lbl{font-size:11px;color:#9BB8D8;margin-bottom:.5rem;letter-spacing:.05em}
+.pline{display:flex;align-items:baseline;gap:8px;margin-bottom:4px}
+.pline .tag{font-size:12px;color:#9BB8D8;min-width:36px}
+.pline .val{font-family:monospace;font-size:17px;font-weight:600;color:#fff;letter-spacing:.5px}
+.fld{margin-bottom:1rem}
+.fld label{display:block;font-size:13px;color:#555;margin-bottom:.3rem;font-weight:500}
+.fld input,.fld select,.fld textarea{width:100%;font-family:'Sarabun',sans-serif;font-size:16px;border:.5px solid #ccc;border-radius:8px;padding:.65rem .9rem;background:#fff;color:#222}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 2px rgba(27,58,107,.12)}
+.fld textarea{height:64px;resize:none}
+.fld .hint{font-size:12px;color:#999;margin-top:.25rem}
+.mono{font-family:monospace;font-size:17px;font-weight:600;letter-spacing:.5px;color:var(--navy)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:500px){.g2{grid-template-columns:1fr}.g3{grid-template-columns:1fr 1fr}}
+.ing-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px;border:.5px solid #ddd;margin-bottom:1rem}
+table.ing{width:100%;border-collapse:collapse;font-size:14px;min-width:400px}
+table.ing th{background:var(--navy);color:#fff;padding:8px 10px;text-align:left;font-weight:500;font-size:13px;font-family:'Sarabun',sans-serif}
+table.ing th.r{text-align:right}
+table.ing td{padding:7px 10px;border-bottom:.5px solid #eee;vertical-align:middle}
+table.ing tr:last-child td{border-bottom:none}
+table.ing tr:nth-child(even) td{background:#F5F8FB}
+table.ing tr.water-row td{background:#EDF7FF}
+.code{font-weight:600;color:var(--navy);font-size:12px}
+.req-val{color:#888;font-size:13px;text-align:right;font-family:monospace}
+table.ing input[type=number]{width:92px;font-family:'Sarabun',sans-serif;font-size:15px;text-align:right;border:.5px solid #ccc;border-radius:6px;padding:5px 7px;background:#fff;color:#222}
+table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
+.water-hint{font-size:11px;color:#1565C0;margin-top:2px}
+.qc-row{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0;border-bottom:.5px solid #eee;gap:8px}
+.qc-row:last-child{border-bottom:none}
+.qc-lbl{font-size:15px;color:#222}
+.qc-sub{font-size:12px;color:#888;margin-top:1px}
+.qc-btns{display:flex;gap:6px;flex-shrink:0}
+.qb{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:.5px solid #ccc;background:#fff;color:#333;font-family:'Sarabun',sans-serif;transition:all .15s;white-space:nowrap}
+.qb.p.sel{background:#E8F5E9;border-color:#4CAF50;color:#1B5E20}
+.qb.f.sel{background:#FFEBEE;border-color:#EF5350;color:#B71C1C}
+.step-row{display:flex;gap:10px;padding:.6rem 0;border-bottom:.5px solid #eee;align-items:flex-start}
+.step-row:last-child{border-bottom:none}
+.step-num{min-width:26px;height:26px;border-radius:50%;background:var(--sky);color:var(--navy);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-txt{font-size:14px;color:#222;flex:1;line-height:1.5}
+.step-en{font-size:12px;color:#888}
+.chk-wrap input[type=checkbox]{width:22px;height:22px;cursor:pointer;accent-color:var(--navy);margin-top:2px}
+.yield-sec{background:#F5F8FB;border-radius:10px;border:.5px solid #ddd;padding:1rem;margin-bottom:1rem}
+.yield-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.ycard{background:#fff;border-radius:8px;padding:.85rem;border:.5px solid #ddd}
+.ycard .lbl{font-size:11px;color:#888;margin-bottom:.25rem;font-weight:500}
+.ycard .val{font-size:21px;font-weight:600;color:var(--navy)}
+.ycard .unit{font-size:11px;color:#888}
+.ycard .sub{font-size:11px;color:#aaa;margin-top:2px}
+.actual-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:.75rem}
+.status-bar{border-radius:8px;padding:.65rem 1rem;font-size:13px;font-weight:500;text-align:center;margin-top:.5rem}
+.sb-normal{background:#E8F5E9;color:#1B5E20}
+.sb-low{background:#FFF9C4;color:#5D4037}
+.sb-high{background:var(--sky);color:var(--navy)}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500}
+.pill.ok{background:#E8F5E9;color:#1B5E20}
+.pill.warn{background:#FFF9C4;color:#5D4037}
+.pill.bad{background:#FFEBEE;color:#B71C1C}
+.btns{display:flex;gap:10px;margin-top:1.5rem;flex-wrap:wrap}
+.btn{padding:.7rem 1.4rem;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;font-family:'Sarabun',sans-serif;border:.5px solid #ccc;background:#fff;color:#333;transition:all .15s;flex:1;min-width:120px}
+.btn:hover{background:#F5F8FB}
+.btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn.primary:hover{background:#14305a}
+.btn.success{background:#2E7D32;color:#fff;border-color:#2E7D32}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.sending-overlay{background:rgba(27,58,107,.04);border-radius:10px;padding:2rem;text-align:center;margin:1rem 0}
+.spinner{width:36px;height:36px;border:3px solid #D6E4F0;border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.done-box{text-align:center;padding:2rem 1rem}
+.done-icon{font-size:52px;margin-bottom:.75rem}
+.done-box h2{font-size:20px;font-weight:600;color:var(--navy);margin-bottom:.4rem}
+.done-box p{font-size:14px;color:#666;margin-bottom:1.25rem}
+.done-preview{background:var(--navy);border-radius:10px;padding:1rem 1.25rem;margin-bottom:1rem;display:inline-block;text-align:left}
+.done-preview div{font-family:monospace;font-size:16px;font-weight:600;color:#fff;letter-spacing:.5px;line-height:1.9}
+.done-preview .tag{color:#9BB8D8;font-size:13px}
+.sheets-link{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1.2rem;border-radius:8px;background:#E8F5E9;color:#1B5E20;font-size:14px;font-weight:500;text-decoration:none;border:.5px solid #4CAF50;margin-bottom:1rem;font-family:'Sarabun',sans-serif}
+.summary-box{background:#F5F8FB;border-radius:8px;border:.5px solid #ddd;padding:1rem;text-align:left;margin-bottom:1.5rem}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;font-size:14px;border-bottom:.5px solid #eee}
+.sum-row:last-child{border-bottom:none}
+.sum-row .k{color:#888}
+.sum-row .v{font-weight:500;color:#222;text-align:right;max-width:65%}
+.err-box{background:#FFEBEE;border:.5px solid #EF5350;border-radius:8px;padding:.75rem 1rem;font-size:13px;color:#B71C1C;margin:.5rem 0}
+
+#pw-screen{position:fixed;inset:0;background:#1B3A6B;display:flex;align-items:center;justify-content:center;z-index:9999;font-family:'Sarabun',sans-serif}
+.pw-box{background:#fff;border-radius:16px;padding:2rem 1.75rem;width:320px;max-width:90vw;text-align:center}
+.pw-logo{font-size:22px;font-weight:600;color:#1B3A6B;margin-bottom:.25rem}
+.pw-sub{font-size:13px;color:#888;margin-bottom:1.5rem}
+.pw-box input{width:100%;font-family:'Sarabun',sans-serif;font-size:16px;border:.5px solid #ccc;border-radius:8px;padding:.65rem .9rem;margin-bottom:.75rem;text-align:center;letter-spacing:.1em}
+.pw-box input:focus{outline:none;border-color:#1B3A6B}
+.pw-box button{width:100%;padding:.75rem;background:#1B3A6B;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;font-family:'Sarabun',sans-serif;cursor:pointer}
+.pw-box button:hover{background:#14305a}
+.pw-err{font-size:13px;color:#B71C1C;margin-top:.5rem;display:none}
+
+</style>
+</head>
+<body>
+
+<div id="pw-screen" style="display: none;">
+  <div class="pw-box">
+    <div class="pw-logo">ครีมเฮ้าส์</div>
+    <div class="pw-sub">Batch Record System — กรุณาใส่รหัสผ่าน</div>
+    <input type="password" id="pw-input" placeholder="รหัสผ่าน" onkeydown="if(event.key===&#39;Enter&#39;)checkPW()">
+    <button onclick="checkPW()">เข้าสู่ระบบ</button>
+    <div class="pw-err" id="pw-err">รหัสผ่านไม่ถูกต้อง</div>
+  </div>
+</div>
+
+<div class="app">
+  <div class="topbar">
+    <div>
+      <h1>ครีมเฮ้าส์ — Batch Record</h1>
+      <div class="sub" id="top-lot">Cold Cream BC1  |  LOT BC68-05-01</div>
+    </div>
+    <div class="badge-conn"><div class="dot"></div>Google Sheets</div>
+  </div>
+  <div class="prog-wrap"><div class="prog" id="prog" style="width:20%"></div></div>
+  <div class="step-tabs">
+    <button class="tab active" onclick="goto(0)">1 ข้อมูลทั่วไป</button>
+    <button class="tab" onclick="goto(1)">2 วัตถุดิบ</button>
+    <button class="tab" onclick="goto(2)">3 ขั้นตอนผลิต</button>
+    <button class="tab" onclick="goto(3)">4 QC</button>
+    <button class="tab" onclick="goto(4)">5 ผลผลิต</button>
+  </div>
+
+  <div class="panel active" id="p0">
+    <div class="sec-title">ข้อมูลทั่วไป / General Information</div>
+    <div class="preview-box">
+      <div class="lbl">FORMAT สำหรับเครื่องยิงเลข / Label format</div>
+      <div class="pline"><span class="tag">LOT</span><span class="val" id="prev-lot">BC68-05-01</span></div>
+      <div class="pline"><span class="tag">MFD</span><span class="val" id="prev-mfd">17-05-2026</span></div>
+      <div class="pline"><span class="tag">EXP</span><span class="val" id="prev-exp">17-05-2029</span></div>
+    </div>
+    <div class="fld">
+      <label>เลขที่รุ่นการผลิต / Lot Number</label>
+      <div class="g3">
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">ปี พ.ศ. (YY)</div>
+          <select id="yy" onchange="update()">
+            <option value="66">66 (2566)</option>
+            <option value="67">67 (2567)</option>
+            <option value="68" selected="">68 (2568)</option>
+            <option value="69">69 (2569)</option>
+            <option value="70">70 (2570)</option>
+            <option value="71">71 (2571)</option>
+            <option value="72">72 (2572)</option>
+            <option value="73">73 (2573)</option>
+            <option value="74">74 (2574)</option>
+            <option value="75">75 (2575)</option>
+            <option value="76">76 (2576)</option>
+          </select></div>
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">เดือน (MM)</div>
+          <select id="mm" onchange="update()">
+            <option value="01">01 ม.ค.</option><option value="02">02 ก.พ.</option>
+            <option value="03">03 มี.ค.</option><option value="04">04 เม.ย.</option>
+            <option value="05" selected="">05 พ.ค.</option><option value="06">06 มิ.ย.</option>
+            <option value="07">07 ก.ค.</option><option value="08">08 ส.ค.</option>
+            <option value="09">09 ก.ย.</option><option value="10">10 ต.ค.</option>
+            <option value="11">11 พ.ย.</option><option value="12">12 ธ.ค.</option>
+          </select></div>
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">ครั้งที่ (XX)</div>
+          <select id="xx" onchange="update()">
+            <option value="01" selected="">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+          </select></div>
+      </div>
+      <div style="margin-top:.5rem;padding:.6rem .9rem;background:var(--sky);border-radius:8px">
+        <span style="font-size:12px;color:#445566">Lot: </span>
+        <span class="mono" id="lot-display">BC68-05-01</span>
+      </div>
+    </div>
+    <div class="fld">
+      <label>วันที่ผลิต / MFD (วัน – เดือน – ปี ค.ศ.)</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px">
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">วัน DD</div>
+          <input type="number" id="mfd_d" min="1" max="31" placeholder="16" style="text-align:center" oninput="update()"></div>
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">เดือน MM</div>
+          <input type="number" id="mfd_m" min="1" max="12" placeholder="05" style="text-align:center" oninput="update()"></div>
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">ปี ค.ศ. YYYY</div>
+          <input type="number" id="mfd_y" min="2024" max="2035" placeholder="2026" style="text-align:center" oninput="update()"></div>
+      </div>
+      <div class="hint">EXP = MFD + 3 ปี — คำนวณอัตโนมัติ</div>
+    </div>
+    <div class="fld">
+      <label>วันหมดอายุ / EXP <span style="font-weight:400;font-size:12px;color:#999">(Shelf life 3 ปี — auto)</span></label>
+      <div style="padding:.65rem .9rem;background:#F5F8FB;border-radius:8px;border:.5px solid #ddd">
+        <span class="mono" id="exp-display" style="font-size:16px">17-05-2029</span>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="fld"><label>Batch Size (kg)</label>
+        <input type="number" id="batch_size" value="85" step="0.5" min="50" max="120" oninput="update()">
+        <div class="hint">ปกติ 85 kg — เกณฑ์ 76.5–93.5 kg</div></div>
+      <div class="fld"><label>จำนวนตามทฤษฎี (เอกสาร)</label>
+        <input type="text" id="theo_units" readonly="" style="background:#F5F8FB;color:var(--navy);font-weight:600"></div>
+    </div>
+    <div class="g2">
+      <div class="fld"><label>ผู้ดำเนินการ / Operator</label>
+        <input type="text" id="operator" value="อนงค์นาถ นพวิญญูวงศ์"></div>
+      <div class="fld"><label>ผู้อนุมัติ / Approved by</label>
+        <input type="text" id="approver" value="นราธิป นพวิญญูวงศ์"></div>
+    </div>
+    <div class="btns"><button class="btn primary" onclick="goto(1)">ถัดไป: วัตถุดิบ →</button></div>
+  </div>
+
+  <div class="panel" id="p1">
+    <div class="sec-title">วัตถุดิบ / Raw Materials</div>
+    <div class="note">⚠ เครื่องชั่งมีฟังก์ชัน <strong>TARE</strong> — กด TARE ก่อนชั่งทุกครั้ง บันทึกเฉพาะ <strong>Net Weight</strong> ที่แสดงบนหน้าจอ</div>
+    <div class="ing-wrap">
+      <table class="ing">
+        <thead><tr><th>รหัส</th><th>วัตถุดิบ</th><th class="r">ต้องการ (kg)</th><th class="r">ชั่งได้จริง (kg)</th></tr></thead>
+        <tbody id="ing-tbody"><tr><td><span class="code">CA</span></td><td>เซทิลแอลกอฮอล์<br><span style="font-size:12px;color:#888">Cetyl Alcohol</span></td><td class="req-val">9.180</td><td style="text-align:right"><input type="number" id="w_CA" placeholder="9.180" step="0.001" min="0" value="" style=""></td></tr><tr><td><span class="code">SP</span></td><td>วาสลีนขาว<br><span style="font-size:12px;color:#888">White Vaseline</span></td><td class="req-val">10.200</td><td style="text-align:right"><input type="number" id="w_SP" placeholder="10.200" step="0.001" min="0" value="" style=""></td></tr><tr><td><span class="code">LP</span></td><td>พาราฟินเหลว<br><span style="font-size:12px;color:#888">Liquid Paraffin</span></td><td class="req-val">8.500</td><td style="text-align:right"><input type="number" id="w_LP" placeholder="8.500" step="0.001" min="0" value="" style=""></td></tr><tr><td><span class="code">SL</span></td><td>โซเดียมลอริลซัลเฟต<br><span style="font-size:12px;color:#888">Sodium Lauryl Sulfate</span></td><td class="req-val">1.105</td><td style="text-align:right"><input type="number" id="w_SL" placeholder="1.105" step="0.001" min="0" value="" style=""></td></tr><tr><td><span class="code">MP</span></td><td>เมทิลพาราเบน<br><span style="font-size:12px;color:#888">Methyl Paraben</span></td><td class="req-val">0.068</td><td style="text-align:right"><input type="number" id="w_MP" placeholder="0.068" step="0.001" min="0" value="" style=""></td></tr><tr><td><span class="code">PG</span></td><td>โพรพีลีนไกลคอล<br><span style="font-size:12px;color:#888">Propylene Glycol</span></td><td class="req-val">1.700</td><td style="text-align:right"><input type="number" id="w_PG" placeholder="1.700" step="0.001" min="0" value="" style=""></td></tr><tr><td><span class="code">SPCA</span></td><td>โซเดียมพีซีเอ<br><span style="font-size:12px;color:#888">Sodium PCA</span></td><td class="req-val">0.425</td><td style="text-align:right"><input type="number" id="w_SPCA" placeholder="0.425" step="0.001" min="0" value="" style=""></td></tr><tr><td><span class="code">RO</span></td><td>หัวน้ำหอมกุหลาบ<br><span style="font-size:12px;color:#888">Rose Oil Fragrance</span></td><td class="req-val">0.170</td><td style="text-align:right"><input type="number" id="w_RO" placeholder="0.170" step="0.001" min="0" value="" style=""></td></tr><tr class="water-row"><td><span class="code">WA</span></td><td>น้ำบริสุทธิ์<br><span style="font-size:12px;color:#888">Purified Water</span><div class="water-hint">ปริมาณอาจต่างเล็กน้อย — กรอกตามที่ชั่งจริง</div></td><td class="req-val">53.652</td><td style="text-align:right"><input type="number" id="w_WA" placeholder="53.652" step="0.001" min="0" value="" style="border-color:#1565C0;background:#EDF7FF;"></td></tr></tbody>
+      </table>
+    </div>
+    <div class="btns">
+      <button class="btn" onclick="goto(0)">← ย้อนกลับ</button>
+      <button class="btn primary" onclick="goto(2)">ถัดไป: ขั้นตอนผลิต →</button>
+    </div>
+  </div>
+
+  <div class="panel" id="p2">
+    <div class="sec-title">ขั้นตอนการผลิต / Production Steps</div>
+    <div id="steps-list"></div>
+    <div class="btns">
+      <button class="btn" onclick="goto(1)">← ย้อนกลับ</button>
+      <button class="btn primary" onclick="goto(3)">ถัดไป: QC →</button>
+    </div>
+  </div>
+
+  <div class="panel" id="p3">
+    <div class="sec-title">การตรวจสอบคุณภาพ / Quality Control</div>
+    <div id="qc-list"></div>
+    <div class="btns">
+      <button class="btn" onclick="goto(2)">← ย้อนกลับ</button>
+      <button class="btn primary" onclick="goto(4)">ถัดไป: ผลผลิต →</button>
+    </div>
+  </div>
+
+  <div class="panel" id="p4">
+    <div class="sec-title">ผลผลิต / Yield</div>
+    <div class="yield-sec">
+      <div style="font-size:12px;font-weight:600;color:var(--navy);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em">ตามเอกสาร GMP</div>
+      <div class="yield-grid">
+        <div class="ycard"><div class="lbl">Batch Size</div><div class="val" id="y-batch">85</div><div class="unit">kg</div><div class="sub">เกณฑ์: 76.5–93.5 kg</div></div>
+        <div class="ycard"><div class="lbl">ตามทฤษฎี</div><div class="val">1,000</div><div class="unit">กระปุก</div><div class="sub">85±10%</div></div>
+      </div>
+      <div style="border-top:.5px solid #ddd;margin:.75rem 0"></div>
+      <div class="actual-row">
+        <div class="fld" style="margin:0"><label>จำนวนกระปุกจริง *</label>
+          <input type="number" id="actual_units" placeholder="เช่น 880" oninput="calcYield()">
+          <div class="hint">ปกติได้ 850–900 กระปุก</div></div>
+        <div class="fld" style="margin:0"><label>Yield % (เอกสาร)</label>
+          <input type="text" id="yield_pct" readonly="" style="background:#F5F8FB;color:var(--navy);font-weight:600;font-size:17px">
+          <div class="hint">คำนวณจาก 1,000 กระปุก</div></div>
+      </div>
+      <div id="yield-status" style="display:none" class="status-bar"></div>
+    </div>
+    <div class="fld"><label>ความเบี่ยงเบน / Deviation</label>
+      <textarea id="deviation">N/A</textarea><div class="hint">ถ้าไม่มีใส่ N/A</div></div>
+    <div class="fld"><label>หมายเหตุ / Remarks</label>
+      <textarea id="remarks" placeholder="(ถ้ามี)"></textarea></div>
+    <div id="submit-err" style="display:none" class="err-box"></div>
+    <div class="btns">
+      <button class="btn" onclick="goto(3)">← ย้อนกลับ</button>
+      <button class="btn success" id="submit-btn" onclick="submitForm()">บันทึก → Google Sheets</button>
+    </div>
+  </div>
+
+  <div id="p-sending" style="display:none;padding:1.25rem">
+    <div class="sending-overlay">
+      <div class="spinner"></div>
+      <div style="font-size:15px;font-weight:500;color:var(--navy)">กำลังบันทึกเข้า Google Sheets...</div>
+      <div style="font-size:13px;color:#888;margin-top:.25rem">รอสักครู่ครับ</div>
+    </div>
+  </div>
+
+  <div id="p-done" style="display:none;padding:1.25rem">
+    <div class="done-box">
+      <div class="done-icon">✅</div>
+      <h2>บันทึกสำเร็จ!</h2>
+      <p>ข้อมูลเข้า Google Sheets เรียบร้อยแล้ว</p>
+      <div class="done-preview" id="done-preview"></div><br>
+      <a class="sheets-link" href="https://docs.google.com/spreadsheets" target="_blank">เปิด Google Sheets ดูข้อมูล</a>
+      <div class="summary-box" id="done-summary"></div>
+      <div class="btns" style="justify-content:center">
+        <button class="btn primary" onclick="newBatch()">+ Batch ใหม่</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const h=btoa('147247#CHEDSADA');
+  function checkPW(){
+    const v=document.getElementById('pw-input').value;
+    if(btoa(v)===h){
+      document.getElementById('pw-screen').style.display='none';
+      sessionStorage.setItem('ch_auth','1');
+    } else {
+      document.getElementById('pw-err').style.display='block';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+    }
+  }
+  window.checkPW=checkPW;
+  if(sessionStorage.getItem('ch_auth')==='1'){
+    window.addEventListener('DOMContentLoaded',function(){
+      document.getElementById('pw-screen').style.display='none';
+    });
+  }
+})();
+</script>
+
+<script>
+const SHEETS_URL='https://script.google.com/macros/s/AKfycbyh5ZpwyUfk56k-SJHkePFI4hj7Iiwy96-wbKpgdx1d8nA0O73v7FOhASUepp3gh7kWfA/exec';
+const INGS=[
+  {code:"CA",th:"เซทิลแอลกอฮอล์",en:"Cetyl Alcohol",pct:10.80,water:false},
+  {code:"SP",th:"วาสลีนขาว",en:"White Vaseline",pct:12.00,water:false},
+  {code:"LP",th:"พาราฟินเหลว",en:"Liquid Paraffin",pct:10.00,water:false},
+  {code:"SL",th:"โซเดียมลอริลซัลเฟต",en:"Sodium Lauryl Sulfate",pct:1.30,water:false},
+  {code:"MP",th:"เมทิลพาราเบน",en:"Methyl Paraben",pct:0.08,water:false},
+  {code:"PG",th:"โพรพีลีนไกลคอล",en:"Propylene Glycol",pct:2.00,water:false},
+  {code:"SPCA",th:"โซเดียมพีซีเอ",en:"Sodium PCA",pct:0.50,water:false},
+  {code:"RO",th:"หัวน้ำหอมกุหลาบ",en:"Rose Oil Fragrance",pct:0.20,water:false},
+  {code:"WA",th:"น้ำบริสุทธิ์",en:"Purified Water",pct:63.12,water:true},
+];
+const STEPS=[
+  {th:"ทำความสะอาดสถานที่ผลิต",en:"Clean production area"},
+  {th:"หลอมละลาย Cetyl Alcohol (CA) ที่ 70°C",en:"Melt Cetyl Alcohol at 70°C"},
+  {th:"เติม White Vaseline (SP) ปั่นจนใส",en:"Add White Vaseline, mix until clear"},
+  {th:"เติม Liquid Paraffin (LP) พักเครื่อง 10 นาที",en:"Add Liquid Paraffin, rest 10 min"},
+  {th:"ละลาย Methyl Paraben (MP) ในน้ำร้อน",en:"Dissolve Methyl Paraben in hot water"},
+  {th:"ละลาย Sodium Lauryl Sulfate (SL) ในสารละลาย MP",en:"Dissolve SLS into MP solution"},
+  {th:"เปิดเครื่องปั่น ตั้งอุณหภูมิ 60°C",en:"Start mixer, set temp 60°C"},
+  {th:"เติมสารละลาย SLS+MP ลงในถังปั่น",en:"Add SLS+MP solution into main tank"},
+  {th:"เติม PG + Sodium PCA + Rose Oil ปั่น 15 นาที",en:"Add PG, Sodium PCA, Rose Oil — mix 15 min"},
+  {th:"ปั่นต่อจนเนื้อเดียวกัน 30 นาที",en:"Continue mixing until homogeneous 30 min"},
+  {th:"เรียงกระปุก C1 บนโต๊ะบรรจุ",en:"Arrange containers C1 on filling table"},
+  {th:"เทสารขณะร้อนลงกระปุก C1",en:"Fill hot cream into containers C1"},
+  {th:"ทิ้งไว้ให้เย็นและแข็งตัว 1 วัน",en:"Allow to cool and set, 1 day"},
+  {th:"ปิดฝา C2 ตรวจสอบสินค้าสำเร็จรูป",en:"Cap with C2, inspect finished product"},
+];
+const QCS=[
+  {th:"ลักษณะภายนอก",en:"Appearance",spec:"ครีมสีขาว ไม่มีฟองอากาศ"},
+  {th:"กลิ่น",en:"Odor",spec:"กลิ่นกุหลาบ"},
+  {th:"สี",en:"Color",spec:"ขาวเหมือนมาตรฐาน"},
+  {th:"ความข้น / Texture",en:"Consistency",spec:"ข้น เนื้อเดียวกัน"},
+  {th:"การปิดฝา C2",en:"Closure",spec:"แน่นสนิท ไม่รั่ว"},
+  {th:"ฉลาก",en:"Label",spec:"ถูกต้อง ครบถ้วน"},
+  {th:"เลข LOT & EXP บนฉลาก",en:"LOT & EXP on label",spec:"ตรงกับบันทึก"},
+];
+const THEO=1000;
+const pad=n=>String(n).padStart(2,'0');
+function getLot(){return'BC'+document.getElementById('yy').value+'-'+document.getElementById('mm').value+'-'+document.getElementById('xx').value;}
+function getMFD(){
+  const d=document.getElementById('mfd_d').value,m=document.getElementById('mfd_m').value,y=document.getElementById('mfd_y').value;
+  if(!d||!m||!y)return null;
+  return{d:parseInt(d),m:parseInt(m),y:parseInt(y)};
+}
+function fmtDate(d,m,y){return`${pad(d)}-${pad(m)}-${y}`;}
+function update(){
+  const lot=getLot();
+  document.getElementById('lot-display').textContent=lot;
+  document.getElementById('top-lot').textContent='Cold Cream BC1  |  LOT '+lot;
+  document.getElementById('prev-lot').textContent=lot;
+  const mfd=getMFD();
+  if(mfd){
+    const ms=fmtDate(mfd.d,mfd.m,mfd.y),es=fmtDate(mfd.d,mfd.m,mfd.y+3);
+    document.getElementById('prev-mfd').textContent=ms;
+    document.getElementById('prev-exp').textContent=es;
+    document.getElementById('exp-display').textContent=es;
+  } else {
+    ['prev-mfd','prev-exp','exp-display'].forEach(id=>document.getElementById(id).textContent='––');
+  }
+  const bs=parseFloat(document.getElementById('batch_size').value)||85;
+  document.getElementById('theo_units').value=THEO.toLocaleString()+' กระปุก';
+  document.getElementById('y-batch').textContent=bs;
+  buildIngTable();
+}
+function calcYield(){
+  const act=parseFloat(document.getElementById('actual_units').value||'0');
+  const pctEl=document.getElementById('yield_pct'),stEl=document.getElementById('yield-status');
+  if(act>0){
+    const pct=(act/THEO*100).toFixed(1);
+    pctEl.value=pct+'%';stEl.style.display='block';
+    const p=parseFloat(pct);
+    if(act>=850&&act<=900){stEl.className='status-bar sb-normal';stEl.textContent='✓ ปริมาณปกติ (850–900)  |  เอกสาร: '+pct+'%';}
+    else if(act<850){stEl.className='status-bar sb-low';stEl.textContent='⚠ ต่ำกว่าปกติ  |  เอกสาร: '+pct+'%';}
+    else{stEl.className='status-bar sb-high';stEl.textContent='✓ ได้มากกว่าปกติ  |  เอกสาร: '+pct+'%';}
+  } else {pctEl.value='';stEl.style.display='none';}
+}
+function buildIngTable(){
+  const bs=parseFloat(document.getElementById('batch_size').value)||85;
+  const tb=document.getElementById('ing-tbody');if(!tb)return;
+  const prev={};
+  INGS.forEach(g=>{const el=document.getElementById('w_'+g.code);if(el&&el.value)prev[g.code]=el.value;});
+  tb.innerHTML='';
+  INGS.forEach(g=>{
+    const req=(bs*g.pct/100).toFixed(3);
+    const wH=g.water?`<div class="water-hint">ปริมาณอาจต่างเล็กน้อย — กรอกตามที่ชั่งจริง</div>`:'';
+    tb.innerHTML+=`<tr${g.water?' class="water-row"':''}><td><span class="code">${g.code}</span></td><td>${g.th}<br><span style="font-size:12px;color:#888">${g.en}</span>${wH}</td><td class="req-val">${req}</td><td style="text-align:right"><input type="number" id="w_${g.code}" placeholder="${req}" step="0.001" min="0" value="${prev[g.code]||''}" style="${g.water?'border-color:#1565C0;background:#EDF7FF;':''}"></td></tr>`;
+  });
+}
+function buildSteps(){
+  const el=document.getElementById('steps-list');if(!el)return;
+  el.innerHTML='';
+  STEPS.forEach((s,i)=>{
+    el.innerHTML+=`<div class="step-row"><div class="step-num">${i+1}</div><div class="step-txt">${s.th}<br><span class="step-en">${s.en}</span></div><div class="chk-wrap"><input type="checkbox" id="step_${i}"></div></div>`;
+  });
+}
+function buildQC(){
+  const el=document.getElementById('qc-list');if(!el)return;
+  el.innerHTML='';
+  QCS.forEach((q,i)=>{
+    el.innerHTML+=`<div class="qc-row"><div style="flex:1"><div class="qc-lbl">${q.th} <span style="font-size:12px;opacity:.7">${q.en}</span></div><div class="qc-sub">${q.spec}</div></div><div class="qc-btns"><button class="qb p" id="qp_${i}" onclick="setQC(${i},'pass')">✓ ผ่าน</button><button class="qb f" id="qf_${i}" onclick="setQC(${i},'fail')">✗ ไม่ผ่าน</button></div></div>`;
+  });
+}
+function setQC(i,v){
+  document.getElementById('qp_'+i).classList.toggle('sel',v==='pass');
+  document.getElementById('qf_'+i).classList.toggle('sel',v==='fail');
+}
+function goto(n){
+  ['p0','p1','p2','p3','p4'].forEach((pid,i)=>{
+    const el=document.getElementById(pid);
+    if(el){el.style.display='';el.classList.toggle('active',i===n);}
+  });
+  document.getElementById('p-sending').style.display='none';
+  document.getElementById('p-done').style.display='none';
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.getElementById('prog').style.width=((n+1)/5*100)+'%';
+  if(n===1)buildIngTable();if(n===2)buildSteps();if(n===3)buildQC();
+  if(n===4){update();calcYield();}
+  window.scrollTo(0,0);
+}
+async function submitForm(){
+  const lot=getLot(),mfd=getMFD();
+  const errEl=document.getElementById('submit-err');
+  errEl.style.display='none';
+  if(!mfd){alert('กรุณากรอกวันที่ผลิตให้ครบครับ');goto(0);return;}
+  const units=document.getElementById('actual_units').value;
+  if(!units){alert('กรุณากรอกจำนวนกระปุกจริงครับ');return;}
+  const mfdStr=fmtDate(mfd.d,mfd.m,mfd.y),expStr=fmtDate(mfd.d,mfd.m,mfd.y+3);
+  const pct=(parseFloat(units)/THEO*100).toFixed(1);
+  const stepsOk=STEPS.filter((_,i)=>document.getElementById('step_'+i)?.checked).length;
+  const qcPass=QCS.filter((_,i)=>document.getElementById('qp_'+i)?.classList.contains('sel')).length;
+  const payload={lot,mfd:mfdStr,exp:expStr,batch_kg:document.getElementById('batch_size').value,units_actual:units,yield_pct:pct+'%',operator:document.getElementById('operator').value,approver:document.getElementById('approver').value,steps_done:stepsOk+'/'+STEPS.length,qc_pass:qcPass+'/'+QCS.length,deviation:document.getElementById('deviation').value,remarks:document.getElementById('remarks').value};
+  INGS.forEach(g=>{payload['w_'+g.code]=document.getElementById('w_'+g.code)?.value||'';});
+  document.getElementById('submit-btn').disabled=true;
+  ['p0','p1','p2','p3','p4'].forEach(pid=>{const el=document.getElementById(pid);if(el){el.style.display='none';el.classList.remove('active');}});
+  document.getElementById('p-sending').style.display='block';
+  document.getElementById('prog').style.width='100%';
+  try{
+    await fetch(SHEETS_URL,{method:'POST',body:JSON.stringify(payload),mode:'no-cors'});
+    const yc=parseFloat(pct)>=90?'ok':parseFloat(pct)>=76?'warn':'bad';
+    document.getElementById('done-preview').innerHTML=`<div><span class="tag">LOT</span> ${lot}</div><div><span class="tag">MFD</span> ${mfdStr}</div><div><span class="tag">EXP</span> ${expStr}</div>`;
+    document.getElementById('done-summary').innerHTML=`<div class="sum-row"><span class="k">Batch Size</span><span class="v">${payload.batch_kg} kg</span></div><div class="sum-row"><span class="k">จำนวนกระปุก</span><span class="v">${parseInt(units).toLocaleString()} กระปุก</span></div><div class="sum-row"><span class="k">Yield % (เอกสาร)</span><span class="v"><span class="pill ${yc}">${pct}%</span></span></div><div class="sum-row"><span class="k">ขั้นตอน ✓</span><span class="v">${stepsOk} / ${STEPS.length}</span></div><div class="sum-row"><span class="k">QC ผ่าน</span><span class="v">${qcPass} / ${QCS.length}</span></div><div class="sum-row"><span class="k">บันทึกเมื่อ</span><span class="v">${new Date().toLocaleTimeString('th-TH')}</span></div>`;
+    document.getElementById('p-sending').style.display='none';
+    document.getElementById('p-done').style.display='block';
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  }catch(err){
+    document.getElementById('p-sending').style.display='none';
+    goto(4);
+    errEl.style.display='block';
+    errEl.textContent='เกิดข้อผิดพลาด: '+err.message;
+    document.getElementById('submit-btn').disabled=false;
+  }
+}
+function newBatch(){
+  ['mfd_d','mfd_m','mfd_y','actual_units','remarks'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('deviation').value='N/A';
+  document.getElementById('xx').value='01';
+  document.getElementById('yield-status').style.display='none';
+  document.getElementById('submit-btn').disabled=false;
+  document.getElementById('submit-err').style.display='none';
+  goto(0);update();
+}
+const now=new Date();
+document.getElementById('mfd_d').value=now.getDate();
+document.getElementById('mfd_m').value=now.getMonth()+1;
+document.getElementById('mfd_y').value=now.getFullYear();
+document.getElementById('mm').value=pad(now.getMonth()+1);
+update();
+</script>
+
+
+</body></html>
