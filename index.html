@@ -212,11 +212,11 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
     <div class="chk-section">
       <div class="chk-sec-title">ข้อมูลทั่วไป</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div class="fld"><label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">วันที่ (วัน/เดือน/ปี ค.ศ.)</label>
+        <div class="fld"><label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">วันที่ (วัน/เดือน/ปี พ.ศ.)</label>
           <div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:5px">
             <input type="number" id="dl_d" min="1" max="31" placeholder="วัน" style="text-align:center;font-family:'Sarabun',sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .4rem;background:#fff;color:#222">
             <input type="number" id="dl_m" min="1" max="12" placeholder="เดือน" style="text-align:center;font-family:'Sarabun',sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .4rem;background:#fff;color:#222">
-            <input type="number" id="dl_y" min="2024" max="2035" placeholder="ปี ค.ศ." style="text-align:center;font-family:'Sarabun',sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .4rem;background:#fff;color:#222">
+            <input type="number" id="dl_y" min="2567" max="2580" placeholder="ปี พ.ศ." style="text-align:center;font-family:'Sarabun',sans-serif;font-size:15px;border:.5px solid #ccc;border-radius:6px;padding:.5rem .4rem;background:#fff;color:#222">
           </div>
         </div>
         <div class="fld"><label style="font-size:13px;color:#555;display:block;margin-bottom:.3rem">Lot ที่ผลิตวันนี้</label>
@@ -766,7 +766,7 @@ function newDailyLog() {
   const now = new Date();
   document.getElementById('dl_d').value = now.getDate();
   document.getElementById('dl_m').value = now.getMonth()+1;
-  document.getElementById('dl_y').value = now.getFullYear();
+  document.getElementById('dl_y').value = now.getFullYear()+543;
   buildDailyChecks();
 }
 
