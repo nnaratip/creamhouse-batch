@@ -301,7 +301,7 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
           <select id="yy" onchange="update()">
             <option value="66">66 (2566)</option>
             <option value="67">67 (2567)</option>
-            <option value="68" selected>68 (2568)</option>
+            <option value="68">68 (2568)</option>
             <option value="69">69 (2569)</option>
             <option value="70">70 (2570)</option>
             <option value="71">71 (2571)</option>
@@ -315,14 +315,14 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
           <select id="mm" onchange="update()">
             <option value="01">01 ม.ค.</option><option value="02">02 ก.พ.</option>
             <option value="03">03 มี.ค.</option><option value="04">04 เม.ย.</option>
-            <option value="05" selected>05 พ.ค.</option><option value="06">06 มิ.ย.</option>
+            <option value="05">05 พ.ค.</option><option value="06">06 มิ.ย.</option>
             <option value="07">07 ก.ค.</option><option value="08">08 ส.ค.</option>
             <option value="09">09 ก.ย.</option><option value="10">10 ต.ค.</option>
             <option value="11">11 พ.ย.</option><option value="12">12 ธ.ค.</option>
           </select></div>
         <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">ครั้งที่ (XX)</div>
           <select id="xx" onchange="update()">
-            <option value="01" selected>01</option>
+            <option value="01">01</option>
             <option value="02">02</option>
             <option value="03">03</option>
             <option value="04">04</option>
@@ -360,14 +360,14 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
       </div>
     </div>
     <div class="fld">
-      <label>วันที่ผลิต / MFD (วัน – เดือน – ปี ค.ศ.)</label>
+      <label>วันที่ผลิต / MFD</label>
       <div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px">
-        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">วัน DD</div>
-          <input type="number" id="mfd_d" min="1" max="31" placeholder="16" style="text-align:center" oninput="update()"></div>
-        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">เดือน MM</div>
-          <input type="number" id="mfd_m" min="1" max="12" placeholder="05" style="text-align:center" oninput="update()"></div>
-        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">ปี ค.ศ. YYYY</div>
-          <input type="number" id="mfd_y" min="2024" max="2035" placeholder="2026" style="text-align:center" oninput="update()"></div>
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">วัน</div>
+          <select id="mfd_d" onchange="update()"><option value="">-- วัน --</option><option value="01">1</option><option value="02">2</option><option value="03">3</option><option value="04">4</option><option value="05">5</option><option value="06">6</option><option value="07">7</option><option value="08">8</option><option value="09">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select></div>
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">เดือน</div>
+          <select id="mfd_m" onchange="update()"><option value="">-- เดือน --</option><option value="01">ม.ค.</option><option value="02">ก.พ.</option><option value="03">มี.ค.</option><option value="04">เม.ย.</option><option value="05">พ.ค.</option><option value="06">มิ.ย.</option><option value="07">ก.ค.</option><option value="08">ส.ค.</option><option value="09">ก.ย.</option><option value="10">ต.ค.</option><option value="11">พ.ย.</option><option value="12">ธ.ค.</option></select></div>
+        <div><div style="font-size:11px;color:#999;margin-bottom:.2rem">ปี</div>
+          <<select id="mfd_y" onchange="update()"><option value="">-- ปี ค.ศ. --</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option></select></div>
       </div>
       <div class="hint">EXP = MFD + 3 ปี — คำนวณอัตโนมัติ</div>
     </div>
@@ -386,9 +386,9 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
     </div>
     <div class="g2">
       <div class="fld"><label>ผู้ดำเนินการ / Operator</label>
-        <input type="text" id="operator" value="อนงค์นาถ นพวิญญูวงศ์"></div>
+        <input type="text" id="operator" value=""></div>
       <div class="fld"><label>ผู้อนุมัติ / Approved by</label>
-        <input type="text" id="approver" value="นราธิป นพวิญญูวงศ์"></div>
+        <input type="text" id="approver" value=""></div>
     </div>
     <div class="btns"><button class="btn primary" onclick="goto(1)">ถัดไป: วัตถุดิบ →</button></div>
   </div>
@@ -546,7 +546,9 @@ const THEO=1000;
 const pad=n=>String(n).padStart(2,'0');
 function getLot(){return'BC'+document.getElementById('yy').value+'-'+document.getElementById('mm').value+'-'+document.getElementById('xx').value;}
 function getMFD(){
-  const d=document.getElementById('mfd_d').value,m=document.getElementById('mfd_m').value,y=document.getElementById('mfd_y').value;
+  const d=document.getElementById('mfd_d').value;
+  const m=document.getElementById('mfd_m').value;
+  const y=document.getElementById('mfd_y').value;
   if(!d||!m||!y)return null;
   return{d:parseInt(d),m:parseInt(m),y:parseInt(y)};
 }
@@ -660,6 +662,7 @@ async function submitForm(){
 }
 function newBatch(){
   ['mfd_d','mfd_m','mfd_y','actual_units','remarks'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const n2=new Date();document.getElementById('mfd_d').value=padZ(n2.getDate());document.getElementById('mfd_m').value=padZ(n2.getMonth()+1);document.getElementById('mfd_y').value=n2.getFullYear();
   document.getElementById('deviation').value='N/A';
   document.getElementById('xx').value='01';
   document.getElementById('yield-status').style.display='none';
@@ -668,10 +671,13 @@ function newBatch(){
   goto(0);update();
 }
 const now=new Date();
-document.getElementById('mfd_d').value=now.getDate();
-document.getElementById('mfd_m').value=now.getMonth()+1;
+const padZ=n=>String(n).padStart(2,'0');
+document.getElementById('mfd_d').value=padZ(now.getDate());
+document.getElementById('mfd_m').value=padZ(now.getMonth()+1);
 document.getElementById('mfd_y').value=now.getFullYear();
 document.getElementById('mm').value=pad(now.getMonth()+1);
+const currentYY=String((now.getFullYear()+543)-2500).padStart(2,'0');
+document.getElementById('yy').value=currentYY;
 
 // ── Daily Log constants ───────────────────────────────────
 const DL_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz6zwLRRChiWhPUyk-9LyQAQVSLxzAqApGMd3RYzCM2ALhcT2sA38CFjZ22YUO8sYTVzw/exec';
