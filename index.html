@@ -268,9 +268,12 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
 
 <div class="app">
   <div class="topbar">
-    <div>
-      <h1>ครีมเฮ้าส์ — Batch Record</h1>
-      <div class="sub" id="top-lot">Cold Cream BC1</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button onclick="showHome()" style="background:rgba(255,255,255,.15);border:.5px solid rgba(255,255,255,.4);color:#fff;border-radius:8px;padding:5px 12px;font-size:13px;cursor:pointer;font-family:'Sarabun',sans-serif;flex-shrink:0">← กลับ</button>
+      <div>
+        <h1>ครีมเฮ้าส์ — Batch Record</h1>
+        <div class="sub" id="top-lot">Cold Cream BC1</div>
+      </div>
     </div>
     <div class="badge-conn"><div class="dot"></div>Google Sheets</div>
   </div>
@@ -471,6 +474,7 @@ table.ing input[type=number]:focus{outline:none;border-color:var(--navy)}
       <div class="summary-box" id="done-summary"></div>
       <div class="btns" style="justify-content:center">
         <button class="btn primary" onclick="newBatch()">+ Batch ใหม่</button>
+        <button class="btn" onclick="showHome()">🏠 กลับหน้าแรก</button>
       </div>
     </div>
   </div>
